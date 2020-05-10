@@ -7,10 +7,6 @@ eureka:
 server:
   port: 8095
 spring:
-  data:
-    authService: auth-service
-  url:
-    authServiceUserValidationPath: /v1/validating-token
   application:
     name: api-gateway
 
@@ -23,41 +19,30 @@ zuul:
       stripPrefix: false
     auth-token-validation:
       path: /v1/validating-token
-      sensitiveHeaders: Cookie,Set-Cookie
       serviceId: auth-service
       stripPrefix: false
     product:
       path: /api/products
-      sensitiveHeaders: Cookie,Set-Cookie
       serviceId: product-service
       stripPrefix: false
     productid:
       path: /api/products/*
-      sensitiveHeaders: Cookie,Set-Cookie
       serviceId: product-service
       stripPrefix: false
     usercreate:
       path: /v1/users**
-      sensitiveHeaders: Cookie,Set-Cookie
       serviceId: user-service
       stripPrefix: false
     userother:
       path: /v1/user
-      sensitiveHeaders: Cookie,Set-Cookie
       serviceId: user-service
       stripPrefix: false
     userid:
       path: /v1/users/*
-      sensitiveHeaders: Cookie,Set-Cookie
       serviceId: user-service
       stripPrefix: false
   SendErrorFilter:
     error:
       disable: true
-# Auth service
-hostname:
-  userservice: http://localhost:8080
-path:
-  getUserByUserName: /v1/validating-token
 
 

@@ -60,6 +60,6 @@ public class SendErrorZuulCustomFilter extends SendErrorFilter {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "null";
+        return null;
     }
 }

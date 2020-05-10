@@ -5,25 +5,12 @@ import com.apigateway.apigateway.model.AuthenticatedResponse;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
 
 @Slf4j
 @Component
 public class ZuulFilterImpl extends ZuulFilter {
-
-    @Value("${hostname.userservice}")
-    private String hostname;
-
-    @Value("${path.getUserByUserName}")
-    private String path;
-
-    @Value("${spring.data.authService}")
-    private String authService;
-
-    @Value("${spring.url.authServiceUserValidationPath}")
-    private String authServiceUserValidationPath;
 
     private final AuthServiceProxy authServiceProxy;
 
