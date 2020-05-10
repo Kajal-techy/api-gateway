@@ -28,6 +28,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-zuul'
+	compile('org.springframework.cloud:spring-cloud-starter-netflix-ribbon')
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-ribbon'
+	compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: '2.1.1.RELEASE'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
