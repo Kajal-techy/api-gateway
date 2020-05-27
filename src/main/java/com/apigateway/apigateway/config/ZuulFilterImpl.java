@@ -5,8 +5,16 @@ import com.apigateway.apigateway.model.AuthenticatedResponse;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ReflectionUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Slf4j
 @Component
@@ -33,7 +41,10 @@ public class ZuulFilterImpl extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         log.info("Entering ZuulFilterImpl.shouldFilter");
-        return !RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/authenticate");
+        log.info("shouldFilter = {} ", (!RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/authenticate"))
+                && !RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/user"));
+        return !RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/authenticate")
+               && !RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/user");
     }
 
     @Override

@@ -53,10 +53,11 @@ public class SendErrorZuulCustomFilter extends SendErrorFilter {
         log.info("Entering SendErrorZuulCustomFilter.run");
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletResponse response = currentContext.getResponse();
+        log.info("Response = {} ");
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         try {
-            response.getOutputStream().println(objectMapper.writeValueAsString((AuthenticationFailure.builder().message("Authentication Failure").errorCode(401)).build()));
+            response.getOutputStream().println(objectMapper.writeValueAsString((AuthenticationFailure.builder().message("Authentication Failure").errorCode(418)).build()));
         } catch (IOException e) {
             e.printStackTrace();
         }
