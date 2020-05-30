@@ -53,6 +53,7 @@ public class SendErrorZuulCustomFilter extends SendErrorFilter {
         log.info("Entering SendErrorZuulCustomFilter.run");
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletResponse response = currentContext.getResponse();
+        log.info("Response = {} ");
         response.setContentType("application/json");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         try {

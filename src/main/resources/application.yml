@@ -10,8 +10,16 @@ spring:
   application:
     name: api-gateway
 
+ribbon:
+  ConnectTimeout: 120000
+  ReadTimeout: 120000
 #Routing with zuul
 zuul:
+  sensitiveHeaders:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  host:
+    connect-timeout-millis: 120000 # starting the connection
+    socket-timeout-millis: 120000  # monitor the continuous incoming data flow
   routes:
     auth-token-generation:
       path: /v1/authenticate
