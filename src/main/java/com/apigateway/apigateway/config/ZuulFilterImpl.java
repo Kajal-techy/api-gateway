@@ -41,10 +41,9 @@ public class ZuulFilterImpl extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         log.info("Entering ZuulFilterImpl.shouldFilter");
-        log.info("shouldFilter = {} ", (!RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/authenticate"))
-                && !RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/user"));
-        return !RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/authenticate")
-               && !RequestContext.getCurrentContext().getRequest().getRequestURI().equals("/v1/user");
+        String RequestURI = RequestContext.getCurrentContext().getRequest().getRequestURI();
+        log.info("shouldFilter = {} ", (!RequestURI.equals("/v1/authenticate")) && (!RequestURI.equals("/v1/user")));
+        return (!RequestURI.equals("/v1/authenticate") && !RequestURI.equals("/v1/user"));
     }
 
     @Override
